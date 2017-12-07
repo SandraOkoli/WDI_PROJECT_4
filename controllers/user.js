@@ -51,17 +51,24 @@ function userDelete(req, res, next) {
 }
 
 // POST /api/users/:id/friends
-function userFriends(req, res, next) {
+function userRequestFriends(req, res, next) {
   User.requestFriend(req.currentUser._id, req.params.id)
     .then(() => User.getFriends(req.currentUser))
     .then(friendships => res.json(friendships))
     .catch(next);
 }
 
-// POST /api/users/:id/friends
+// PUT /api/users/:id/friends
 function userRemoveFriends(req, res, next) {
-  User.requestFriend(req.currentUser._id, req.params.id)
+  User.removeFriend(req.currentUser._id, req.params.id)
     .then(() => User.getFriends(req.currentUser))
+    .then(friendships => res.json(friendships))
+    .catch(next);
+}
+
+function userGetFriends(req, res, next) {
+  User
+    .getFriends(req.currentUser._id, req.params.id)
     .then(friendships => res.json(friendships))
     .catch(next);
 }
@@ -71,6 +78,7 @@ module.exports = {
   show: userShow,
   edit: userEdit,
   delete: userDelete,
-  friends: userFriends,
-  removeFriends: userRemoveFriends
+  requestFriends: userRequestFriends,
+  removeFriends: userRemoveFriends,
+  getFriends: userGetFriends
 };

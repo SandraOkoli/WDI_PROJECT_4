@@ -12,8 +12,10 @@ router.route('/users/:id')
   .delete(user.delete);
 
 router.route('/users/:id/friends')
-  .post(secureRoute, user.friends)
-  .post(secureRoute, user.removeFriends);
+  .get(secureRoute, user.getFriends)
+  .post(secureRoute, user.requestFriends)
+  .put(secureRoute, user.removeFriends);
+
 
 router.route('/register')
   .post(auth.register);
