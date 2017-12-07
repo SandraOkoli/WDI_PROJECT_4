@@ -52,7 +52,8 @@ function userDelete(req, res, next) {
 
 // POST /api/users/:id/friends
 function userRequestFriends(req, res, next) {
-  User.requestFriend(req.currentUser._id, req.params.id)
+  User
+    .requestFriend(req.currentUser._id, req.params.id)
     .then(() => User.getFriends(req.currentUser))
     .then(friendships => res.json(friendships))
     .catch(next);
@@ -60,18 +61,32 @@ function userRequestFriends(req, res, next) {
 
 // PUT /api/users/:id/friends
 function userRemoveFriends(req, res, next) {
-  User.removeFriend(req.currentUser._id, req.params.id)
+  User
+    .removeFriend(req.currentUser._id, req.params.id)
     .then(() => User.getFriends(req.currentUser))
     .then(friendships => res.json(friendships))
     .catch(next);
 }
-
+// GET /api/users/:id/friends
 function userGetFriends(req, res, next) {
   User
     .getFriends(req.currentUser._id, req.params.id)
     .then(friendships => res.json(friendships))
     .catch(next);
 }
+
+// function createChat(req, res, next ) {
+//   User
+//     .getFriends(req.currentUser._id, req.params.id)
+//     .then(friendships => {
+//       if(friendships === 'accepted')
+//         req.body.createdBy = req.user;
+//       user.messages.push(req.body);
+//       return user.save();
+//
+//       return res.status(201).json(user);
+//     });
+// }
 
 module.exports = {
   index: userIndex,

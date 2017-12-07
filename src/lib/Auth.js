@@ -1,3 +1,4 @@
+
 class Auth {
   static setToken(token) {
     return localStorage.setItem('token', token);

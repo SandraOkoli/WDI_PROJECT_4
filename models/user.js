@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(friendsPlugin());
 
+
 userSchema
   .virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(passwordConfirmation) {
