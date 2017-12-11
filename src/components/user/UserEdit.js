@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 
-import UserForm from './UserForm';
+import UserEditForm from './UserEditForm';
 
 class UserEdit extends React.Component {
   state = {
@@ -43,7 +43,7 @@ handleSubmit = (e) => {
 
 render() {
   return(
-    <UserForm
+    <UserEditForm
       user={this.state.user}
       handleSubmit={this.handleSubmit}
       handleChange={this.handleChange}

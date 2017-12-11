@@ -1,7 +1,10 @@
 import React from 'react';
 import Axios from 'axios';
 
-import Auth from '../../lib/Auth';
+
+import { Link } from 'react-router-dom';
+import { Row, Button } from 'react-materialize';
+import SoundCloud from '../utils/SoundCloud';
 
 class UserShow extends React.Component {
    state = {
@@ -9,7 +12,7 @@ class UserShow extends React.Component {
 
    }
 
-   componentWillMount() {
+   componentDidMount() {
      Axios
        .get(`/api/users/${this.props.match.params.id}`)
        .then(res => this.setState({ user: res.data }))
@@ -28,13 +31,19 @@ class UserShow extends React.Component {
 
    render() {
      return(
-       <div className="row">
-         <div className="image-title col-md-6">
-           <img src={this.state.user.avatar} className="img-responsive" />
-         </div>
-         <div className="col-md-6">
-           <h3>{this.state.user.avatar}</h3>
-         </div>
+       <div className="container">
+         <Row>
+           <img src={this.state.user.image} />
+           <img src={this.state.user.avatar}/>
+           <p>{this.state.user.bio}</p>
+           <h4>{this.state.user.location}</h4>
+           <h4>{this.state.user.ratings}</h4>
+           {/* <p>{this.state.user.messages.content }</p> */}
+           <Button>Send a message to {this.state.user.username}</Button>
+           <Button><Link to ={`/users/${this.state.user.id}/edit`}>
+           </Link></Button>
+           <SoundCloud/>
+         </Row>
        </div>
      );
    }

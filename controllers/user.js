@@ -7,7 +7,6 @@ function userIndex(req, res, next) {
     .exec()
     .then(users => res.json(users))
     .catch(next);
-
 }
 
 //Show Route
@@ -50,6 +49,43 @@ function userDelete(req, res, next) {
     .catch(next);
 }
 
+// function createMessage(req, res, next) {
+//   User
+//     .findById(req.params.id)
+//     .exec()
+//     .then(friendships => {
+//       console.log(friendships);
+//       if (!friendships) return res.notFound();
+//
+//       req.body.createdBy = req.user;
+//       user.messages.push(req.body);
+//       console.log(user);
+//       user.save();
+//
+//       return res.status(201).json(user);
+//     })
+//     .catch(next);
+// }
+//get friends array(.find)
+//if friends array has status === accepted or contains an id that matches the current user id
+//push message to the message array.
+
+// function createMessage(req, res, next ) {
+//   User
+//     .getFriends(req.currentUser._id, req.params.id)
+//     .then(friendships => {
+//       if(friendships === 'accepted')
+//         console.log(friendships);
+//       // req.body.createdBy = req.user;
+//       user.messages.push(req.body);
+//       return user.save();
+//     })
+//     return res.status(201).json(user)
+//
+//     .catch(next);
+//   };
+
+
 // POST /api/users/:id/friends
 function userRequestFriends(req, res, next) {
   User
@@ -75,18 +111,8 @@ function userGetFriends(req, res, next) {
     .catch(next);
 }
 
-// function createChat(req, res, next ) {
-//   User
-//     .getFriends(req.currentUser._id, req.params.id)
-//     .then(friendships => {
-//       if(friendships === 'accepted')
-//         req.body.createdBy = req.user;
-//       user.messages.push(req.body);
-//       return user.save();
-//
-//       return res.status(201).json(user);
-//     });
-// }
+
+
 
 module.exports = {
   index: userIndex,
@@ -96,4 +122,6 @@ module.exports = {
   requestFriends: userRequestFriends,
   removeFriends: userRemoveFriends,
   getFriends: userGetFriends
+
+  // createMessage: createMessage
 };

@@ -1,7 +1,11 @@
 const router = require('express').Router();
 const auth = require('../controllers/auth');
 const user = require('../controllers/user');
+const chats = require('../controllers/chats');
 const secureRoute = require('../lib/secureRoute');
+
+router.route('/chats')
+  .post(chats.create);
 
 router.route('/users')
   .get(user.index);

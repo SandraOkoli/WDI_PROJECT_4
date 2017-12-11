@@ -2,15 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const friendsPlugin = require('mongoose-friends-plugin');
 
-const messageSchema = new mongoose.Schema({
-  sentBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  content: { type: String, required: true }
-});
-
-messageSchema.methods.belongsTo = function messageBelongsTo(user) {
-  if(typeof this.createdBy.id === 'string') return this.createdBy.id === user.id;
-  return user.id === this.createdBy.toString();
-};
 
 const userSchema = new mongoose.Schema({
   firstName: { type: String, required: true, trim: true },
@@ -21,21 +12,22 @@ const userSchema = new mongoose.Schema({
   avatar: { type: String },
   image: { type: String, required: true, trim: true },
   bio: { type: String, required: true, trim: true },
-  genre: { type: String, required: true, trim: true },
   location: { type: String, required: true },
-  type: { type: String, required: true },
-  skillLevel: { type: String, required: true },
-  socialLinks: {
-    facebook: { type: String },
-    instagram: {type: String },
-    twitter: { type: String  }
-  },
+  socialLinks: { type: String },
   stars: { type: Number },
-  messages: [messageSchema]
+  genre: {
+    name: {type: String, required: true }
+  },
+  type: {
+    name: { type: String, required: true}
+  },
+  skillLevel: {
+    name: { type: String, required: true }
+  }
+
 });
 
 userSchema.plugin(friendsPlugin());
-
 
 userSchema
   .virtual('passwordConfirmation')
