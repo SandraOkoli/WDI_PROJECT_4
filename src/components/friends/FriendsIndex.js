@@ -3,22 +3,12 @@ import Axios from 'axios';
 
 import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
-import { Button } from 'react-materialize';
+import { Button, Tabs, Tab } from 'react-materialize';
 
 class FriendsIndex extends React.Component {
   state = {
     friends: []
   }
-//status
-//accepted - Your Friends
-//pending - Accept(post) or Reject(put)
-//requested - S
-
-//   ('/users/:id/friends')
-//   .get user.getFriends
-//   .post user.requestFriends
-//   .put user.removeFriends
-
 
   componentDidMount() {
     Axios
@@ -35,19 +25,21 @@ class FriendsIndex extends React.Component {
 
   acceptRequest = (friend) => {
     Axios
-      .post(`/api/users/${friend.id}/friends`,{
-        headers: { 'Authorization': `Bearer ${Auth.getToken()}`}
+      .post(`/api/users/${friend._id}/friends`, {}, {
+        headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
       })
-      .then(res => this.setState({ friends: res.data }))
+      .then(res => this.setState({friends: res.data }))
       .catch(err => console.log(err));
   }
 
   rejectRequest = (friend) => {
     Axios
-      .put(`/api/users/${friend._id}/friends`, {
+      .put(`/api/users/${friend._id}/friends`, {}, {
         headers: { 'Authorization': `Bearer ${Auth.getToken()}`}
       })
-      .then(res => this.setState({friends: res.data }))
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
       .catch(err => console.log(err));
   }
 
@@ -55,21 +47,39 @@ class FriendsIndex extends React.Component {
     return (
       <div>
         <h1>Friend Requests</h1>
-        <ul>
-          {this.getFriends('accepted').map(friend => {
-            return (
-              <li key={friend._id}>
-                <Link key={1} to={`/users/${friend._id}`}>{friend.friend.username}</Link>
-                <Button onClick={() => this.acceptRequest(friend)}>Accept Request</Button>
-                <Button onClick={() => this.rejectRequest(friend)}>Reject Request</Button>
 
-                {/* {this.getFriends('pending').map(friend => {
-                  <li><Link key={1} to={`/users/${friend.friend._id}`}>{friend.friend.username}</Link></li>
-                })} */}
-              </li>
-            );
-          })}
-        </ul>
+        <Tabs className='tab-demo z-depth-1'>
+          <Tab title="My Friends" active>
+            <ul>
+              { this.getFriends('accepted').length === 0 && <h3>Find some friends...</h3>}
+
+              {this.getFriends('accepted').map(friend => {
+                return (
+                  <li key={friend._id}>
+                    <Link key={1} to={`/users/${friend._id}`}>{friend.friend.username}</Link>
+                    <Button onClick={() => this.rejectRequest(friend)}>Remove Friend</Button>
+                  </li>
+                );
+              })}
+            </ul>
+          </Tab>
+
+          <Tab title="Pending Friend Requests">
+            <ul>
+              { this.getFriends('pending').length === 0 && <h3>You have no pending requests</h3>}
+
+              {this.getFriends('pending') && this.getFriends('pending').map(friend => {
+                return (
+                  <li key={friend._id}>
+                    <Link key={1} to={`/users/${friend._id}`}>{friend.friend.username}</Link>
+                    <Button onClick={() => this.acceptRequest(friend)}>Accept Request</Button>
+                    <Button onClick={() => this.rejectRequest(friend)}>Reject Request</Button>
+                  </li>
+                );
+              })}
+            </ul>
+          </Tab>
+        </Tabs>
       </div>
     );
   }

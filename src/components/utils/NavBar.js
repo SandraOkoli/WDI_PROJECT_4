@@ -33,7 +33,7 @@ const NavBar = ({ history }) => {
         <SideNavItem divider />
         { Auth.isAuthenticated() && <SideNavItem href=''>Edit Profile</SideNavItem>}
         { Auth.isAuthenticated() && <SideNavItem waves href='#'>Messages</SideNavItem>}
-        { Auth.isAuthenticated() && <SideNavItem href='#'>Friends</SideNavItem>}
+        { Auth.isAuthenticated() && <SideNavItem href={`/users/${Auth.getPayload().userId}/friends`}>Friends</SideNavItem>}
         { !Auth.isAuthenticated() && <NavItem href="/register">Register</NavItem>}
         { !Auth.isAuthenticated() && <NavItem href='/login'>Login</NavItem>}
         { Auth.isAuthenticated() && <SideNavItem onClick={logout}>Logout</SideNavItem>}

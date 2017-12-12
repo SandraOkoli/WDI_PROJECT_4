@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 
-
+import Auth from '../../lib/Auth';
 import { Link } from 'react-router-dom';
 import { Row, Button } from 'react-materialize';
 import SoundCloud from '../utils/SoundCloud';
@@ -18,12 +18,22 @@ class UserShow extends React.Component {
        .catch(err => console.log(err));
    }
 
+   makeFriendRequest = () => {
+     Axios
+       .post(`/api/users/${this.state.user.id}/friends`, {}, {
+         headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
+       })
+       .then(res => this.setState({friends: res.data }))
+       .catch(err => console.log(err));
+   }
+
 
    render() {
      return(
        <div className="container">
          <Row>
-           <Button><Link to={`/users/${this.state.user.id}/friends`}>Friends</Link></Button>
+           {/* <Button><Link to={`/users/${this.state.user.id}/friends`}>Friends</Link></Button> */}
+           <Button onClick={() => this.makeFriendRequest()}>Add {this.state.user.username}2 as a Friend</Button>
            <h3>{this.state.user.username}</h3>
            <img src={this.state.user.image} />
            <img src={this.state.user.avatar}/>

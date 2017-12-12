@@ -50,6 +50,9 @@ function userDelete(req, res, next) {
 }
 
 
+
+// Friends
+
 // POST /api/users/:id/friends/requests
 function userRequestFriends(req, res, next) {
   User
@@ -67,6 +70,7 @@ function userRemoveFriends(req, res, next) {
     .then(friendships => res.json(friendships))
     .catch(next);
 }
+
 // GET /api/users/:id/friends
 function userGetFriends(req, res, next) {
   User

@@ -20,7 +20,6 @@ router.route('/users/:id/friends')
   .post(secureRoute, user.requestFriends)
   .put(secureRoute, user.removeFriends);
 
-
 router.route('/register')
   .post(auth.register);
 

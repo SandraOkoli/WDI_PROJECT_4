@@ -7,7 +7,7 @@ function register(req, res, next) {
   User
     .create(req.body)
     .then(user => {
-      const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1hr'});
+      const token = jwt.sign({ userId: user._id }, secret, { expiresIn: '1hr'});
 
       return res.json({ message: `Welcome ${user.username}`, token});
     })
@@ -21,7 +21,7 @@ function login(req, res, next) {
       if(!user.validatePassword(req.body.password))
         return res.status(401).json({ message: 'Unauthorised' });
 
-      const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1hr'});
+      const token = jwt.sign({ userId: user._id }, secret, { expiresIn: '1hr'});
 
       return res.json({ message: `Welcome back ${user.username}`, token});
     })
