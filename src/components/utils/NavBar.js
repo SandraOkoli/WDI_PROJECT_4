@@ -1,41 +1,45 @@
 import React from 'react';
 import Auth from '../../lib/Auth';
-// import { Link } from 'react-router-dom';
+import { withRouter  } from 'react-router-dom';
 
 import { Navbar, NavItem, Icon, SideNav, SideNavItem, Button } from 'react-materialize';
 
-const NavBar = () => {
+const NavBar = ({ history }) => {
 
-  const logout = (e) => {
+  function logout(e) {
     e.preventDefault();
+
     Auth.logout();
-  };
+    history.push('/');
+  }
 
   return (
     <Navbar brand='logo' right>
       <NavItem href='#'><Icon>search</Icon></NavItem>
-      <NavItem href='get-started.html'><Icon>menu</Icon></NavItem>
+
       <SideNav trigger={<Button>menu</Button>}
         options={{ closeOnClick: true }}
       >
         <SideNavItem userView
           user={{
-            background: '',
+            background: 'https://lh5.ggpht.com/kvswWeqQPJYFZbHQlQPswxIeAOZ-U6JQR5YQ1OYjobK9oT8bvNmptVXJbfwVZS1xnQeg=h900',
             image: '',
             name: 'John Doe',
             email: 'jdandturk@gmail.com'
           }}
         />
-        <SideNavItem href='#!icon' icon='cloud'>First Link With Icon</SideNavItem>
-        <SideNavItem href='#!second'>Second Link</SideNavItem>
+        <SideNavItem href='#'>First Link With Icon</SideNavItem>
+        <SideNavItem href='#'>Second Link</SideNavItem>
         <SideNavItem divider />
-        <SideNavItem subheader>Edit Profile</SideNavItem>
-        <SideNavItem waves href='#!third'>Messages</SideNavItem>
-        {/* {Auth.isAuthenticated() && <SideNavItem href={logout}}>Logout</SideNavItem> */}
-        {Auth.isAuthenticated() && <a href='#' onClick={logout}>Logout</a>}
+        { Auth.isAuthenticated() && <SideNavItem href=''>Edit Profile</SideNavItem>}
+        { Auth.isAuthenticated() && <SideNavItem waves href='#'>Messages</SideNavItem>}
+        { Auth.isAuthenticated() && <SideNavItem href='#'>Friends</SideNavItem>}
+        { !Auth.isAuthenticated() && <NavItem href="/register">Register</NavItem>}
+        { !Auth.isAuthenticated() && <NavItem href='/login'>Login</NavItem>}
+        { Auth.isAuthenticated() && <SideNavItem onClick={logout}>Logout</SideNavItem>}
       </SideNav>
     </Navbar>
   );
 };
 
-export default NavBar;
+export default withRouter(NavBar);

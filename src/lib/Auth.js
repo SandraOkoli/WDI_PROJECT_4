@@ -16,7 +16,7 @@ class Auth {
   }
 
   static logout() {
-    localStorage.removeItem('token');
+    return localStorage.removeItem('token');
   }
 
   static getPayload() {

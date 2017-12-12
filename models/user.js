@@ -15,16 +15,9 @@ const userSchema = new mongoose.Schema({
   location: { type: String, required: true },
   socialLinks: { type: String },
   stars: { type: Number },
-  genre: {
-    name: {type: String, required: true }
-  },
-  type: {
-    name: { type: String, required: true}
-  },
-  skillLevel: {
-    name: { type: String, required: true }
-  }
-
+  genre: {type: String, required: true },
+  type: { type: String, required: true},
+  skillLevel: { type: String, required: true }
 });
 
 userSchema.plugin(friendsPlugin());

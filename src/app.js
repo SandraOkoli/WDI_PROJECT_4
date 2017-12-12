@@ -14,15 +14,31 @@ class App extends React.Component {
 
 state = {
   users: [],
-  types: []
+  types: [],
+  genres: [],
+  skillLevels: [],
+  locations: []
 };
 
 componentDidMount() {
   Axios.get('/api/users')
     .then(res => {
-      const types = res.data.map(user => user.type.name);
-      const uniqTypes = _.uniq(types);
-      this.setState({ users: res.data , types: uniqTypes });
+      const types = res.data.map(user => user.type);
+      const genres = res.data.map(user => user.genre);
+      const skillLevels = res.data.map(user => user.skillLevel);
+      const locations = res.data.map(user => user.location);
+
+      this.setState({
+        users: res.data,
+        types: _.uniq(types),
+        genres: _.uniq(genres),
+        skillLevels: _.uniq(skillLevels),
+        locations: _.uniq(locations),
+        selectedType: 'all',
+        selectedGenre: 'all',
+        selectedSkillLevel: 'all',
+        selectedLocation: 'all'
+      });
     });
 }
 
@@ -34,15 +50,32 @@ handleFilterByType = (e) => {
   this.setState({ selectedType: e.target.value });
 }
 
+handleFilterByGenre = (e) => {
+  this.setState({ selectedGenre: e.target.value });
+}
+
+handleFilterBySkillLevel = (e) => {
+  this.setState({ selectedSkillLevel: e.target.value });
+}
+
+handleFilterByLocation = (e) => {
+  this.setState({ selectedLocation: e.target.value });
+}
+
 handleSort = (e) => {
   const [sortBy] = e.target.value.split('|');
   this.setState({ sortBy });
 }
 
 getUsers = () => {
-  const { users, selectedType, sortBy } = this.state;
-  const selectedUsers = _.filter(users, user => user.type === selectedType || selectedType === 'all');
-  console.log(selectedUsers);
+  const { users, selectedType, selectedGenre, selectedSkillLevel, selectedLocation, sortBy } = this.state;
+  const selectedUsers = _.filter(users, user => {
+    return (user.type === selectedType || selectedType === 'all')
+    && (user.genre === selectedGenre || selectedGenre === 'all')
+    && (user.skillLevel === selectedSkillLevel || selectedSkillLevel === 'all')
+    && (user.location === selectedLocation || selectedLocation === 'all');
+  });
+  // console.log(selectedUsers);
   return _.orderBy(selectedUsers, [sortBy]);
 }
 
@@ -51,13 +84,19 @@ render() {
   return (
     <Router>
       <div>
-        <SearchBar
+        <NavBar />
+        {/* <SearchBar
           types={this.state.types}
+          genres={this.state.genres}
+          skillLevels={this.state.skillLevels}
+          locations={this.state.locations}
           handleSearch={this.handleSearch}
           handleFilterByType={this.handleFilterByType}
+          handleFilterByGenre={this.handleFilterByGenre}
+          handleFilterBySkillLevel={this.handleFilterBySkillLevel}
+          handleFilterByLocation={this.handleFilterByLocation}
           handleSort={this.handleSort}
-        />
-        <NavBar />
+        /> */}
         <Routes/>
       </div>
     </Router>

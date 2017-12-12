@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Row, Input, Button} from 'react-materialize';
+import Auth from '../../lib/Auth';
 
 //Use a functional component as forms do not require requests to the api
 //Pass in user props, handleChange and handleSubmit
@@ -84,7 +85,8 @@ const UserEditForm = ({ user, handleChange, handleSubmit }) => {
             <option value='2'>Intermediate</option>
             <option value='3'>Pro</option>
           </Input>
-          <Button>Register</Button>
+          { Auth.isAuthenticated() && <Button>Register</Button>}
+          { !Auth.isAuthenticated() && <Button>Register</Button>}
         </Row>
       </form>
     </div>

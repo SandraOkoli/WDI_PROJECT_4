@@ -9,7 +9,6 @@ import SoundCloud from '../utils/SoundCloud';
 class UserShow extends React.Component {
    state = {
      user: {}
-
    }
 
    componentDidMount() {
@@ -19,29 +18,24 @@ class UserShow extends React.Component {
        .catch(err => console.log(err));
    }
 
-   //avatar
-   //youtube iframe
-   //username
-   //location
-   //ratings
-   //connect button
-   //Back button
-   //embedded player
-   //messages button
 
    render() {
      return(
        <div className="container">
          <Row>
+           <Button><Link to={`/users/${this.state.user.id}/friends`}>Friends</Link></Button>
+           <h3>{this.state.user.username}</h3>
            <img src={this.state.user.image} />
            <img src={this.state.user.avatar}/>
            <p>{this.state.user.bio}</p>
+           <h4>{this.state.user.genre}</h4>
            <h4>{this.state.user.location}</h4>
            <h4>{this.state.user.ratings}</h4>
-           {/* <p>{this.state.user.messages.content }</p> */}
+           <h4>{this.state.user.socialLinks}</h4>
            <Button>Send a message to {this.state.user.username}</Button>
            <Button><Link to ={`/users/${this.state.user.id}/edit`}>
-           </Link></Button>
+           Edit Profile</Link></Button>
+
            <SoundCloud/>
          </Row>
        </div>

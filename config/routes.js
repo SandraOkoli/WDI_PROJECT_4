@@ -5,7 +5,7 @@ const chats = require('../controllers/chats');
 const secureRoute = require('../lib/secureRoute');
 
 router.route('/chats')
-  .post(chats.create);
+  .post(secureRoute, chats.create);
 
 router.route('/users')
   .get(user.index);

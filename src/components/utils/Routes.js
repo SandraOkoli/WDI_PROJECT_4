@@ -3,9 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 
 import Register from '../auth/Register';
 import Login from '../auth/Login';
-import UserIndex from '../user/UserIndex';
-import UserShow from '../user/UserShow';
-import UserEdit from '../user/UserEdit';
+import UserIndex from '../users/UserIndex';
+import UserShow from '../users/UserShow';
+import UserEditForm from '../users/UserEdit';
+import ChatsCreate from '../chats/ChatsCreate';
+import FriendsIndex from '../friends/FriendsIndex';
 
 const Routes = () => {
   return (
@@ -13,9 +15,11 @@ const Routes = () => {
     <Switch>
       <Route path ="/register" component={ Register } />
       <Route path ="/login" component={ Login } />
-      <Route exact path="/users" component={ UserIndex } />
-      <Route exact path="/users/:id" component={ UserShow } />
-      <Route exact path="/users/:id/edit" component={ UserEdit } />
+      <Route path="/users/:id/edit" component={ UserEditForm } />
+      <Route path="/users/:id/friends" component={ FriendsIndex } />
+      <Route path="/users/:id" component={ UserShow } />
+      <Route path="/users" component={ UserIndex } />
+      <Route path="/chats/new" component={ ChatsCreate } />
     </Switch>
   );
 };
