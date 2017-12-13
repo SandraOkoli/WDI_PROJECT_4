@@ -20,6 +20,10 @@ router.route('/users/:id/friends')
   .post(secureRoute, user.requestFriends)
   .put(secureRoute, user.removeFriends);
 
+router.route('/chats')
+  .post(secureRoute,chats.create)
+  .get(secureRoute, chats.find);
+
 router.route('/register')
   .post(auth.register);
 

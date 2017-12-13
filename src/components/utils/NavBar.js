@@ -5,6 +5,15 @@ import { withRouter  } from 'react-router-dom';
 import { Navbar, NavItem, Icon, SideNav, SideNavItem, Button } from 'react-materialize';
 
 const NavBar = ({ history }) => {
+  //#666666
+  const navStyles = {
+    backgroundColor: '#524d55',
+    color: 'white',
+    border: 'none',
+    width: '100%',
+    height: '64px',
+    lineHeight: '64px'
+  };
 
   function logout(e) {
     e.preventDefault();
@@ -14,9 +23,8 @@ const NavBar = ({ history }) => {
   }
 
   return (
-    <Navbar brand='logo' right>
-      <NavItem href='#'><Icon>search</Icon></NavItem>
-
+    <div>
+      <div style={navStyles}></div>
       <SideNav trigger={<Button>menu</Button>}
         options={{ closeOnClick: true }}
       >
@@ -24,21 +32,21 @@ const NavBar = ({ history }) => {
           user={{
             background: 'https://lh5.ggpht.com/kvswWeqQPJYFZbHQlQPswxIeAOZ-U6JQR5YQ1OYjobK9oT8bvNmptVXJbfwVZS1xnQeg=h900',
             image: '',
-            name: 'John Doe',
-            email: 'jdandturk@gmail.com'
+            name: '',
+            email: ''
           }}
         />
-        <SideNavItem href='#'>First Link With Icon</SideNavItem>
-        <SideNavItem href='#'>Second Link</SideNavItem>
+        <SideNavItem href='/users'>Find collaborators</SideNavItem>
+        {/* <SideNavItem href='#'>Second Link</SideNavItem> */}
         <SideNavItem divider />
-        { Auth.isAuthenticated() && <SideNavItem href=''>Edit Profile</SideNavItem>}
+        { Auth.isAuthenticated() && <SideNavItem href={`/users/${Auth.getPayload().userId}/edit`}>Edit Profile</SideNavItem>}
         { Auth.isAuthenticated() && <SideNavItem waves href='#'>Messages</SideNavItem>}
         { Auth.isAuthenticated() && <SideNavItem href={`/users/${Auth.getPayload().userId}/friends`}>Friends</SideNavItem>}
-        { !Auth.isAuthenticated() && <NavItem href="/register">Register</NavItem>}
         { !Auth.isAuthenticated() && <NavItem href='/login'>Login</NavItem>}
+        { !Auth.isAuthenticated() && <NavItem href="/register">Register</NavItem>}
         { Auth.isAuthenticated() && <SideNavItem onClick={logout}>Logout</SideNavItem>}
       </SideNav>
-    </Navbar>
+    </div>
   );
 };
 

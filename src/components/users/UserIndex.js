@@ -18,7 +18,6 @@ class UserIndex extends React.Component {
 
   }
   render() {
-    // console.log(this.state.users);
     return(
       <Row>
         {this.state.users.map(user => {
@@ -27,8 +26,7 @@ class UserIndex extends React.Component {
               <Col m={6} s={12} >
                 <Card className ="medium"
                   header={<CardTitle image={user.image}></CardTitle>}
-                  actions={[<Link key={1} to={`/users/${user.id}`}>View Artist</Link>]}> 
-                  <a href={`/users/${user.id}`}>View Artist</a>
+                  actions={[<Link key={1} to={`/users/${user.id}`}>View Artist</Link>]}>
                   <p>{user.username}</p>
                   <p>{user.type}</p>
                   <p>{user.genre}</p>

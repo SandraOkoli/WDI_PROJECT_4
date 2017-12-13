@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const { dbURI } = require('../config/environment');
-mongoose.connect(dbURI);
+mongoose.connect(dbURI, { useMongoClient: true });
 
 const User = require('../models/user');
+const Chat = require('../models/chat');
 
 User.collection.drop();
+Chat.collection.drop();
+
+let users;
 
 User
   .create([{
@@ -23,11 +27,7 @@ User
     type: 'Singer',
     skillLevel: 'Beginner',
     socialLinks: '@Zaclenoire',
-    stars: 3,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 3
   }, {
     firstName: 'Iggy',
     lastName: 'London',
@@ -43,11 +43,7 @@ User
     type: 'Singer',
     skillLevel: 'Beginner',
     socialLinks: '@IggyLdn',
-    stars: 3,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 3
   }, {
     firstName: 'Sophie',
     lastName: 'Hollow',
@@ -63,11 +59,7 @@ User
     type: 'Singer',
     skillLevel: 'Intermediate',
     socialLinks: '@sophHol',
-    stars: 4,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 4
   }, {
     firstName: 'Grace',
     lastName: 'Halsie',
@@ -83,11 +75,7 @@ User
     type: 'Songwriter',
     skillLevel: 'Intermediate',
     socialLinks: '@amazingGrace',
-    stars: 4,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 4
   }, {
     firstName: 'Rae',
     lastName: 'Simone',
@@ -103,11 +91,7 @@ User
     type: 'Singer',
     skillLevel: 'Intermediate',
     socialLinks: '@justRae',
-    stars: 5,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 5
   }, {
     firstName: 'Matt',
     lastName: 'Ryan',
@@ -123,11 +107,7 @@ User
     type: 'Producer',
     skillLevel: 'Pro',
     socialLinks: '@MattRyan',
-    stars: 5,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 5
   }, {
     firstName: 'Jake',
     lastName: 'Simmons',
@@ -143,11 +123,7 @@ User
     type: 'Singer',
     skillLevel: 'Intermediate',
     socialLinks: '@JustJake',
-    stars: 5,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 5
   }, {
     firstName: 'Amelia',
     lastName: 'Lily',
@@ -163,11 +139,7 @@ User
     type: 'Songwriter',
     skillLevel: 'Beginner',
     socialLinks: '@AmeliaLily',
-    stars: 4,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 4
   }, {
     firstName: 'Hayley',
     lastName: 'Roads',
@@ -183,11 +155,7 @@ User
     type: 'Singer',
     skillLevel: 'Intermediate',
     socialLinks: '@BeatsbyJay',
-    stars: 4,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 4
   }, {
     firstName: 'Camille',
     lastName: 'Rowe',
@@ -203,11 +171,7 @@ User
     type: 'Singer',
     skillLevel: 'Pro',
     socialLinks: '@CamilleRowe',
-    stars: 5,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 5
   }, {
     firstName: 'Kay',
     lastName: 'Reece',
@@ -223,11 +187,7 @@ User
     type: 'Producer',
     skillLevel: 'Intermediate',
     socialLinks: '@KayBeats',
-    stars: 4,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 4
   }, {
     firstName: 'Miles',
     lastName: 'Wyatt',
@@ -243,11 +203,7 @@ User
     type: 'Producer',
     skillLevel: 'Intermediate',
     socialLinks: '@MilesWyatt',
-    stars: 4,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 4
   }, {
     firstName: 'Jacob',
     lastName: 'Banks',
@@ -263,11 +219,7 @@ User
     type: 'Artist',
     skillLevel: 'Pro',
     socialLinks: '@JacobBanks',
-    stars: 5,
-    messages: [{
-      sentBy: '',
-      content: ''
-    }]
+    stars: 5
   // }, {
   //   firstName: 'Jay',
   //   lastName: 'Hughes',
@@ -329,7 +281,31 @@ User
   //     content: ''
   //   }]
   }])
+  .then((data) => {
+    users = data;
+    console.log(`${users.length} users created`);
 
-  .then((users) => console.log(`${users.length} users created`))
+    return Chat
+      .create([{
+        friends: [users[0], users[1]],
+        messages: [
+          {
+            sender: users[0],
+            content: 'Yo'
+          },
+          {
+            sender: users[1],
+            content: 'Whatsup?'
+          },
+          {
+            sender: users[0],
+            content: 'Not much'
+          }
+        ]
+      }]);
+  })
+  .then(chats => {
+    console.log(`${chats.length} chats created`);
+  })
   .catch((err) => console.log(err))
   .finally(() => mongoose.connection.close());

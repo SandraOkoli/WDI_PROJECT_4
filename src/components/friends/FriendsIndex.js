@@ -51,7 +51,7 @@ class FriendsIndex extends React.Component {
         <Tabs className='tab-demo z-depth-1'>
           <Tab title="My Friends" active>
             <ul>
-              { this.getFriends('accepted').length === 0 && <h3>Find some friends...</h3>}
+              { this.getFriends('accepted').length === 0 && <h5>Find people to connect with people...</h5>}
 
               {this.getFriends('accepted').map(friend => {
                 return (
@@ -66,7 +66,7 @@ class FriendsIndex extends React.Component {
 
           <Tab title="Pending Friend Requests">
             <ul>
-              { this.getFriends('pending').length === 0 && <h3>You have no pending requests</h3>}
+              { this.getFriends('pending').length === 0 && <p>You have no pending requests</p>}
 
               {this.getFriends('pending') && this.getFriends('pending').map(friend => {
                 return (
