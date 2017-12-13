@@ -4,6 +4,7 @@ const User = require('../models/user');
 function userIndex(req, res, next) {
   User
     .find()
+    .populate('chats')
     .exec()
     .then(users => res.json(users))
     .catch(next);
@@ -13,7 +14,7 @@ function userIndex(req, res, next) {
 function userShow(req, res, next) {
   User
     .findById(req.params.id)
-    .populate('friends')
+    .populate('friends chats')
     .then((user) => {
       if (!user) return res.notFound();
       res.json(user);

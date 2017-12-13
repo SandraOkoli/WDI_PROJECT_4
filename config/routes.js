@@ -21,8 +21,17 @@ router.route('/users/:id/friends')
   .put(secureRoute, user.removeFriends);
 
 router.route('/chats')
-  .post(secureRoute,chats.create)
   .get(secureRoute, chats.find);
+
+router.route('/chats/:id')
+  .get(secureRoute, chats.show)
+  .delete(secureRoute, chats.delete);
+
+router.route('/users/:id/chats')
+  .post(secureRoute, chats.create);
+
+// router.route('/chats/:id/messages')
+//   .post(secureRoute, messages.create);
 
 router.route('/register')
   .post(auth.register);

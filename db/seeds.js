@@ -220,66 +220,6 @@ User
     skillLevel: 'Pro',
     socialLinks: '@JacobBanks',
     stars: 5
-  // }, {
-  //   firstName: 'Jay',
-  //   lastName: 'Hughes',
-  //   username: 'Beats by Jay',
-  //   email: 'jay@hughes.com',
-  //   password: 'password',
-  //   passwordConfirmation: 'password',
-  //   avatar: 'https://www.google.co.uk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiv3_TR2fXXAhWCxxQKHaOTAEwQjRwIBw&url=http%3A%2F%2Funited-pop.com%2Fen%2Fmusic-producer&psig=AOvVaw2Y1XEj2tdL4GTBX4e-g_AC&ust=1512660240913478',
-  //   image: 'https://www.google.co.uk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiv3_TR2fXXAhWCxxQKHaOTAEwQjRwIBw&url=http%3A%2F%2Funited-pop.com%2Fen%2Fmusic-producer&psig=AOvVaw2Y1XEj2tdL4GTBX4e-g_AC&ust=1512660240913478',
-  //   bio: 'London based producer looking to collabarate with artists across all genres.',
-  //   location: 'London',
-  //   genre: 'Rnb',
-  //   type: 'Producer',
-  //   skillLevel: 'Intermediate',
-  //   socialLinks: '@BeatsbyJay',
-  //   stars: 4,
-  //   messages: [{
-  //     sentBy: '',
-  //     content: ''
-  //   }]
-  // }, {
-  //   firstName: 'Jay',
-  //   lastName: 'Hughes',
-  //   username: 'Beats by Jay',
-  //   email: 'jay@hughes.com',
-  //   password: 'password',
-  //   passwordConfirmation: 'password',
-  //   avatar: 'https://www.google.co.uk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiv3_TR2fXXAhWCxxQKHaOTAEwQjRwIBw&url=http%3A%2F%2Funited-pop.com%2Fen%2Fmusic-producer&psig=AOvVaw2Y1XEj2tdL4GTBX4e-g_AC&ust=1512660240913478',
-  //   image: 'https://www.google.co.uk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiv3_TR2fXXAhWCxxQKHaOTAEwQjRwIBw&url=http%3A%2F%2Funited-pop.com%2Fen%2Fmusic-producer&psig=AOvVaw2Y1XEj2tdL4GTBX4e-g_AC&ust=1512660240913478',
-  //   bio: 'London based producer looking to collabarate with artists across all genres.',
-  //   location: 'London',
-  //   genre: 'Rnb',
-  //   type: 'Producer',
-  //   skillLevel: 'Intermediate',
-  //   socialLinks: '@BeatsbyJay',
-  //   stars: 4,
-  //   messages: [{
-  //     sentBy: '',
-  //     content: ''
-  //   }]
-  // }, {
-  //   firstName: 'Jay',
-  //   lastName: 'Hughes',
-  //   username: 'Beats by Jay',
-  //   email: 'jay@hughes.com',
-  //   password: 'password',
-  //   passwordConfirmation: 'password',
-  //   avatar: 'https://www.google.co.uk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiv3_TR2fXXAhWCxxQKHaOTAEwQjRwIBw&url=http%3A%2F%2Funited-pop.com%2Fen%2Fmusic-producer&psig=AOvVaw2Y1XEj2tdL4GTBX4e-g_AC&ust=1512660240913478',
-  //   image: 'https://www.google.co.uk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiv3_TR2fXXAhWCxxQKHaOTAEwQjRwIBw&url=http%3A%2F%2Funited-pop.com%2Fen%2Fmusic-producer&psig=AOvVaw2Y1XEj2tdL4GTBX4e-g_AC&ust=1512660240913478',
-  //   bio: 'London based producer looking to collabarate with artists across all genres.',
-  //   location: 'London',
-  //   genre: 'Rnb',
-  //   type: 'Producer',
-  //   skillLevel: 'Intermediate',
-  //   socialLinks: '@BeatsbyJay',
-  //   stars: 4,
-  //   messages: [{
-  //     sentBy: '',
-  //     content: ''
-  //   }]
   }])
   .then((data) => {
     users = data;
@@ -287,7 +227,7 @@ User
 
     return Chat
       .create([{
-        friends: [users[0], users[1]],
+        users: [users[0].id, users[1].id],
         messages: [
           {
             sender: users[0],

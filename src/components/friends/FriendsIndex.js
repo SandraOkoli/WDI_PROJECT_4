@@ -51,7 +51,7 @@ class FriendsIndex extends React.Component {
         <Tabs className='tab-demo z-depth-1'>
           <Tab title="My Friends" active>
             <ul>
-              { this.getFriends('accepted').length === 0 && <h5>Find people to connect with people...</h5>}
+              { this.getFriends('accepted').length === 0 && <h5>Find people to collaborate with...</h5>}
 
               {this.getFriends('accepted').map(friend => {
                 return (
@@ -74,6 +74,20 @@ class FriendsIndex extends React.Component {
                     <Link key={1} to={`/users/${friend._id}`}>{friend.friend.username}</Link>
                     <Button onClick={() => this.acceptRequest(friend)}>Accept Request</Button>
                     <Button onClick={() => this.rejectRequest(friend)}>Reject Request</Button>
+                  </li>
+                );
+              })}
+            </ul>
+          </Tab>
+
+          <Tab title="Sent Requests">
+            <ul>
+              { this.getFriends('requested').length === 0 && <p>You have no sent requests</p>}
+
+              {this.getFriends('requested') && this.getFriends('requested').map(friend => {
+                return (
+                  <li key={friend._id}>
+                    <Link key={1} to={`/users/${friend._id}`}>{friend.friend.username}</Link>
                   </li>
                 );
               })}

@@ -34,6 +34,13 @@ userSchema.pre('validate', function checkPassword(next) {
   next();
 });
 
+userSchema
+  .virtual('chats', {
+    ref: 'Chat',
+    localField: '_id',
+    foreignField: 'users'
+  });
+
 userSchema.pre('save', function hashPassword(next) {
   if(this.isModified('password')) {
     this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));

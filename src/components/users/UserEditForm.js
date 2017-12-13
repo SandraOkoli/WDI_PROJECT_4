@@ -85,7 +85,7 @@ const UserEditForm = ({ user, handleChange, handleSubmit }) => {
             <option value='2'>Intermediate</option>
             <option value='3'>Pro</option>
           </Input>
-          { Auth.isAuthenticated() && <Button>Register</Button>}
+          { Auth.isAuthenticated() && <Button>Save Changes</Button>}
           { !Auth.isAuthenticated() && <Button>Register</Button>}
         </Row>
       </form>
