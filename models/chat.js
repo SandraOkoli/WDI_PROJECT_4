@@ -17,6 +17,6 @@ function mustBeTwo() {
   return self.users.length === 2;
 }
 
-// chatSchema.index({users: 1}, {unique: true});
+chatSchema.index({users: 1}, {unique: true});
 
 module.exports = mongoose.model('Chat', chatSchema);

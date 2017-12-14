@@ -1,9 +1,10 @@
 import React from 'react';
-import { Row, Input, Button } from 'react-materialize';
+import { Row, Input } from 'react-materialize';
 
-import Auth from '../../lib/Auth';
 
-const SearchBar = ({ handleFilterByType, handleFilterByGenre, handleFilterBySkillLevel, handleFilterByLocation, types, genres, skillLevels, locations }) => {
+const SearchBar = ({ types, handleFilterByType, genres, handleFilterByGenre, skillLevels, handleFilterBySkillLevel, locations, handleFilterByLocation }) => {
+// const SearchBar = ({ handleFilterByType, handleFilterByGenre, handleFilterBySkillLevel, handleFilterByLocation, types, genres, skillLevels, locations }) => {
+  console.log(types);
   return (
     <div className="container">
       <Row>
@@ -23,7 +24,7 @@ const SearchBar = ({ handleFilterByType, handleFilterByGenre, handleFilterBySkil
             name="select"
             onChange={handleFilterByGenre}
           >
-            <option value='all'>Select genre</option>
+            <option value='all'>Select Genre</option>
             {genres.map(genre => <option key={genre}>{genre}</option>)}
           </Input>
 
@@ -32,7 +33,7 @@ const SearchBar = ({ handleFilterByType, handleFilterByGenre, handleFilterBySkil
             name="select"
             onChange={handleFilterBySkillLevel}
           >
-            <option value='all'>Select skill level</option>
+            <option value='all'>Select Skill Level</option>
             {skillLevels.map(skillLevel => <option key={skillLevel}>{skillLevel}</option>)}
           </Input>
 
@@ -41,11 +42,9 @@ const SearchBar = ({ handleFilterByType, handleFilterByGenre, handleFilterBySkil
             name="select"
             onChange={handleFilterByLocation}
           >
-            <option value='all'>Select location</option>
+            <option value='all'>Select Skill Level</option>
             {locations.map(location => <option key={location}>{location}</option>)}
           </Input>
-
-          <Button> </Button>
 
         </form>
       </Row>
