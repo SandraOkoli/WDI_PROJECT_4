@@ -4653,7 +4653,7 @@ react-bootstrap-autosuggest@^0.5.0:
     prop-types "^15.5.8"
     warning "^3.0.0"
 
-react-dom@^15.6.1:
+react-dom@^15.4.2, react-dom@^15.6.1:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.2.tgz#41cfadf693b757faf2708443a1d1fd5a02bef730"
   dependencies:
@@ -4702,6 +4702,14 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
+react-scroll-parallax@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-scroll-parallax/-/react-scroll-parallax-1.1.1.tgz#9bb35939480db3bdd6a641e6754247c928d50df0"
+  dependencies:
+    prop-types "^15.5.10"
+    react "^15.4.2"
+    react-dom "^15.4.2"
+
 react-test-renderer@15, react-test-renderer@^15.5.0:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.6.2.tgz#d0333434fc2c438092696ca770da5ed48037efa8"
@@ -4709,7 +4717,7 @@ react-test-renderer@15, react-test-renderer@^15.5.0:
     fbjs "^0.8.9"
     object-assign "^4.1.0"
 
-react@^15.6.1:
+react@^15.4.2, react@^15.6.1:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
   dependencies:

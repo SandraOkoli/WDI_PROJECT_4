@@ -30,8 +30,8 @@ router.route('/chats/:id')
 router.route('/users/:id/chats')
   .post(secureRoute, chats.create);
 
-// router.route('/chats/:id/messages')
-//   .post(secureRoute, messages.create);
+router.route('/chats/:id/messages')
+  .post(secureRoute, chats.messagesCreate);
 
 router.route('/register')
   .post(auth.register);

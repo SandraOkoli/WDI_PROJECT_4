@@ -5,6 +5,7 @@ import {Row, Input, Button} from 'react-materialize';
 const LoginForm = ({ user, handleChange, handleSubmit }) => {
   return(
     <div className="container">
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <Row>
           <Input s={12}

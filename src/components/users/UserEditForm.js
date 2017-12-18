@@ -8,6 +8,10 @@ import Auth from '../../lib/Auth';
 const UserEditForm = ({ user, handleChange, handleSubmit }) => {
   return (
     <div className="container">
+      { Auth.isAuthenticated() && <h2>Edit Profile</h2>}
+      { !Auth.isAuthenticated()
+        && <h2>Register</h2>
+        && <p>Connect with creatives worldwide today!</p>}
       <form onSubmit={handleSubmit}>
         <Row>
           <Input s={6}

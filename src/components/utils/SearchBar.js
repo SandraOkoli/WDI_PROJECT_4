@@ -42,7 +42,7 @@ const SearchBar = ({ types, handleFilterByType, genres, handleFilterByGenre, ski
             name="select"
             onChange={handleFilterByLocation}
           >
-            <option value='all'>Select Skill Level</option>
+            <option value='all'>Select Location</option>
             {locations.map(location => <option key={location}>{location}</option>)}
           </Input>
 

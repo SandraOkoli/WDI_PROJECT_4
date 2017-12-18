@@ -10,6 +10,12 @@ class FriendsIndex extends React.Component {
     friends: []
   }
 
+  friendsImage = {
+    borderRadius: '50px',
+    width: '100px',
+    height: '100px'
+  }
+
   componentDidMount() {
     Axios
       .get(`/api/users/${this.props.match.params.id}/friends`,{
@@ -46,7 +52,7 @@ class FriendsIndex extends React.Component {
   render() {
     return (
       <div>
-        <h1>Friend Requests</h1>
+        <h3>Friend Requests</h3>
 
         <Tabs className='tab-demo z-depth-1'>
           <Tab title="My Friends" active>
@@ -57,6 +63,7 @@ class FriendsIndex extends React.Component {
                 return (
                   <li key={friend._id}>
                     <Link key={1} to={`/users/${friend._id}`}>{friend.friend.username}</Link>
+                    <Link key={2} to={`/users/${friend._id}`}>{friend.friend.image}</Link>
                     <Button onClick={() => this.rejectRequest(friend)}>Remove Friend</Button>
                   </li>
                 );
@@ -72,6 +79,7 @@ class FriendsIndex extends React.Component {
                 return (
                   <li key={friend._id}>
                     <Link key={1} to={`/users/${friend._id}`}>{friend.friend.username}</Link>
+                    <Link key={2} to={`/users/${friend._id}`}>{friend.friend.image}</Link>
                     <Button onClick={() => this.acceptRequest(friend)}>Accept Request</Button>
                     <Button onClick={() => this.rejectRequest(friend)}>Reject Request</Button>
                   </li>
@@ -87,7 +95,8 @@ class FriendsIndex extends React.Component {
               {this.getFriends('requested') && this.getFriends('requested').map(friend => {
                 return (
                   <li key={friend._id}>
-                    <Link key={1} to={`/users/${friend._id}`}>{friend.friend.username}</Link>
+                    <Link key={1} to={`/users/${friend._id}`}><img src={friend.friend.image} className='avatar'/><p>{friend.friend.socialLinks}</p></Link>
+                    {/* <Link key={2} to={`/users/${friend._id}`}><p>{friend.friend.username}</p></Link> */}
                   </li>
                 );
               })}

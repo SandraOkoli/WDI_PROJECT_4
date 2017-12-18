@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import { Row, Card, CardTitle, Col } from 'react-materialize';
+import { Row, Card, CardTitle, Col, Icon } from 'react-materialize';
 
 import SearchBar from '../utils/SearchBar';
 
@@ -75,37 +75,45 @@ class UserIndex extends React.Component {
     const users = this.state.users.length > 0 ? this.getUsers() : [];
     console.log('THIS.STATE.USERS', this.state.users);
     return(
-      <Row>
-        <SearchBar
-          types={this.state.types}
-          genres={this.state.genres}
-          skillLevels={this.state.skillLevels}
-          locations={this.state.locations}
-          handleFilterByType={this.handleFilterByType}
-          handleFilterByGenre={this.handleFilterByGenre}
-          handleFilterBySkillLevel={this.handleFilterBySkillLevel}
-          handleFilterByLocation={this.handleFilterByLocation}
-        />
-        {users.map(user =>
+      <div className="container">
+        <Row>
+          <SearchBar
+            types={this.state.types}
+            genres={this.state.genres}
+            skillLevels={this.state.skillLevels}
+            locations={this.state.locations}
+            handleFilterByType={this.handleFilterByType}
+            handleFilterByGenre={this.handleFilterByGenre}
+            handleFilterBySkillLevel={this.handleFilterBySkillLevel}
+            handleFilterByLocation={this.handleFilterByLocation}
+          />
+          {users.map(user =>
           // return(
-          <div key={user.id}>
-            <Col m={6} s={12} >
-              <Card className ="medium"
-                header={<CardTitle image={user.image}></CardTitle>}
-                actions={[<Link key={1} to={`/users/${user.id}`}>View Artist</Link>]}>
-                <p>{user.username}</p>
-                <p>{user.type}</p>
-                <p>{user.genre}</p>
-                <p>{user.location}</p>
-              </Card>
-            </Col>
-          </div>)}
-        {/* // ); */}
-        {/* })} */}
-      </Row>
+            <div key={user.id}>
+              <Col m={4} s={12} >
+                {/* <Card header={<CardTitle reveal image={user.image} waves='light'/>}
+                title={user.username} reveal={ <p>{user.type}</p>}>
+                <p><a href={[<Link key={1} to={`/users/${user.id}`}>This is a link</Link>]}></a></p>
+              </Card> */}
+                <Card className ="medium"
+                  header={<CardTitle image={user.image}></CardTitle>}
+                  actions={[<Link key={1} to={`/users/${user.id}`}>View Artist</Link>]}>
+                  <h4>{user.username}</h4>
+                  <h5>{user.type}</h5>
+                  <p><Icon>music_note</Icon>{user.genre}</p>
+                  <p><Icon>location_on</Icon>{user.location}</p>
+                </Card>
+              </Col>
+            </div>)}
+          {/* // ); */}
+          {/* })} */}
+        </Row>
+      </div>
     );
   }
 }
+
+
 
 
 export default UserIndex;

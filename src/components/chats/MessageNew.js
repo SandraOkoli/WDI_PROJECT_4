@@ -50,7 +50,7 @@ class MessageNew extends React.Component {
 
   render() {
     return(
-      <section>
+      <div className="container">
         <p>Want to collaborate?</p>
         { this.state.chat.messages &&
           <div>
@@ -73,7 +73,7 @@ class MessageNew extends React.Component {
           <Button>Send</Button>
 
         </form>
-      </section>
+      </div>
     );
   }
 }

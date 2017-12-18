@@ -16,8 +16,12 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <NavBar />
-          <Routes/>
+          <header>
+            <NavBar />
+          </header>
+          <main>
+            <Routes/>
+          </main>
         </div>
       </Router>
     );
