@@ -8,10 +8,10 @@ const HtmlWebpack = new HtmlWebpackPlugin({
   inject: 'body'
 });
 
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const CopyWebpack = new CopyWebpackPlugin([
-//   { from: './src/assets', to: 'assets' }
-// ]);
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpack = new CopyWebpackPlugin([
+  { from: './src/assets', to: 'assets' }
+]);
 
 const HotModuleReplcement = new webpack.HotModuleReplacementPlugin();
 
@@ -46,12 +46,6 @@ module.exports = {
         secure: false
       }
     ]
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://localhost:4000',
-    //     secure: false
-    //   }
-    // }
   },
-  plugins: [HotModuleReplcement, HtmlWebpack]
+  plugins: [HotModuleReplcement, HtmlWebpack, CopyWebpack]
 };
