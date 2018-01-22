@@ -1,14 +1,8 @@
 import React from 'react';
-import { Button, Footer } from 'react-materialize';
-import { Link } from 'react-router-dom';
 
-const logo = {
-  position: 'absolute',
-  zIndex: '30',
-  margin: '80px'
-};
 
 const h2 = {
+  fontSize: '3rem',
   color: 'white',
   position: 'absolute',
   zIndex: '50',
@@ -20,35 +14,18 @@ const h2 = {
   backgroundPosition: ''
 };
 
-const buttonStyle = {
-  borderRadius: '4px',
-  padding: '4px',
-  position: 'absolute'
+const backgroundImg = {
+  height: '100vh'
 };
+
 
 
 const Homepage = () => {
   return(
     <div>
-      <img style={logo} src="https://image.ibb.co/bzqJC6/logo_1.png" />
       <h2 style={h2}>Connect & Collaborate with music artists, songwriters and producers around the world</h2>
-      <img src="http://sendemo.net/images/Ron_Header2.jpg" />
-      <div style={buttonStyle}><Link to='/login'>Login</Link></div>
-      <Button><Link to="/register">Register</Link></Button>
-
-      <Footer copyrights="&copy Muse 2017" moreLinks={<a className="grey-text text-lighten-4 right" href="#!">More Links</a>}
-        links={
-          <ul>
-            <li><a className="grey-text text-lighten-3" href="#!">About</a></li>
-            <li><a className="grey-text text-lighten-3" href="#!">Share</a></li>
-            <li><a className="grey-text text-lighten-3" href="#!">Facebook</a></li>
-            <li><a className="grey-text text-lighten-3" href="#!">Twitter</a></li>
-          </ul>
-        } className='example'
-      >
-        <h5 className="white-text">Footer Content</h5>
-        <p className="grey-text text-lighten-4">.</p>
-      </Footer>
+      <img style={backgroundImg} src="https://files.slack.com/files-pri/T0351JZQ0-F8U63F6TD/muisc_background_1920x1080.png
+      " />
     </div>
   );
 };

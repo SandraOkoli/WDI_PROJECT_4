@@ -5,41 +5,31 @@ import { withRouter  } from 'react-router-dom';
 import { NavItem, Icon, SideNav, SideNavItem, Button } from 'react-materialize';
 
 const NavBar = ({ history }) => {
-  //#666666
-  const navStyles = {
-    backgroundColor: '#0079BF',
-    color: 'white',
-    border: 'none',
-    width: '100%',
-    height: '64px',
-    position: 'absolute',
-    top: '0',
-    lineHeight: '64px'
-  };
 
   const burgerMenu = {
+    height: '60px',
     textDecoration: 'none',
-    backgroundColor: '#0079BF',
-    textAlign: 'center',
+    background: 'none',
+    color: '#000',
     transition: '.2s ease-out',
     cursor: 'pointer',
     position: 'absolute',
     right: '0',
-    border: 'none',
-    fontSize: '2.5rem',
-    borderRadius: '0',
-    boxShadow: 'none',
-    paddingTop: '4px'
+    top: '0',
+    boxShadow: 'none'
   };
 
   const logo = {
-    width: '70px',
     height: '70px',
-    zIndex: '1',
-    position: 'absolute',
     marginLeft: '15px',
     top: '0',
+    left: '0',
+    position: 'absolute',
     padding: '6px'
+  };
+
+  const i = {
+    fontSize: '3rem'
   };
 
   function logout(e) {
@@ -50,10 +40,10 @@ const NavBar = ({ history }) => {
   }
 
   return (
+
     <div>
       <img style={logo} src="https://image.ibb.co/bzqJC6/logo_1.png" />
-      <div style={navStyles}></div>
-      <SideNav trigger={<Button style={burgerMenu}><Icon>menu</Icon></Button>}
+      <SideNav trigger={<Button style={burgerMenu}><Icon style={i}>menu</Icon></Button>}
         options={{ closeOnClick: true }}
       >
         <SideNavItem userView
