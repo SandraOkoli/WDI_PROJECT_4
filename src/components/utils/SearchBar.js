@@ -3,8 +3,6 @@ import { Row, Input } from 'react-materialize';
 
 
 const SearchBar = ({ types, handleFilterByType, genres, handleFilterByGenre, skillLevels, handleFilterBySkillLevel, locations, handleFilterByLocation }) => {
-// const SearchBar = ({ handleFilterByType, handleFilterByGenre, handleFilterBySkillLevel, handleFilterByLocation, types, genres, skillLevels, locations }) => {
-  console.log(types);
   return (
     <div className="container">
       <Row>

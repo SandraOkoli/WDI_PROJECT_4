@@ -9,7 +9,7 @@ import UserShow from '../users/UserShow';
 import UserEdit from '../users/UserEdit';
 import ChatsIndex from '../chats/ChatsIndex';
 import FriendsIndex from '../friends/FriendsIndex';
-import MessageNew from '../chats/MessageNew';
+// import MessageNew from '../chats/MessageNew';
 // import Auth from '../../lib/Auth';
 
 const Routes = () => {

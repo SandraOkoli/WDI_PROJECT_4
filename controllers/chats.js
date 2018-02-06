@@ -17,8 +17,7 @@ function chatsShow(req, res, next) {
 function chatCreate(req, res, next) {
 
   req.body.users = [req.currentUser.id, req.params.id];
-  // console.log(req.body.users[0]);
-  // console.log(req.body.users[1]);
+  
   Chat
     .create(req.body)
     .then(user => res.status(201).json(user))
