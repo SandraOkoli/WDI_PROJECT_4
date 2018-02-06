@@ -5,8 +5,6 @@ const h2 = {
   fontSize: '3rem',
   color: 'white',
   position: 'absolute',
-  zIndex: '50',
-  margin: '20px',
   paddingTop: '300px',
   marginBottom: '20px',
   textAlign: 'center',
